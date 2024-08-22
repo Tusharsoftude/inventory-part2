@@ -1,0 +1,39 @@
+.welcome {
+    font-family: Arial, sans-serif;
+    background-color:beige ;
+    background-size: cover; /* To cover the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+header {
+    background: #007bff; 
+   
+}
+
+footer {
+    background: #343a40; /* Bootstrap dark color */
+}
+
+.card {
+    border: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff; /* Bootstrap primary color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
