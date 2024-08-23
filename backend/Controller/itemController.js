@@ -12,8 +12,16 @@ export const getAllItems = async (req, res) => {
 
 // Controller to get a single item by ID
 export const getItemById = async (req, res) => {
+  const userId = req.params.id
+  console.log(userId);
+  console.log(req.params.id);
+  
+  
+  if(!userId){
+    return res.status(400).json({error:"Id is required"})
+  }
   try {
-    const item = await Item.findByPk(req.params.id);
+    const item = await Item.findAll({where:{userId:userId}});
     if (!item) {
       return res.status(404).json({ error: 'Item not found.' });
     }
@@ -25,10 +33,10 @@ export const getItemById = async (req, res) => {
 
 // Controller to create a new item
 export const createItem = async (req, res) => {
-  const { name, description, quantity, price, category } = req.body;
+  const { name, description, quantity, price, category,userId } = req.body;
 
   try {
-    const newItem = await Item.create({ name, description, quantity, price, category });
+    const newItem = await Item.create({ name, description, quantity, price, category ,userId});
     res.status(201).json(newItem);
   } catch (error) {
     res.status(400).json({ error: 'An error occurred while creating the item.', details: error.message });

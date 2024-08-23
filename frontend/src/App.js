@@ -7,20 +7,22 @@ import Signin from "./Component/Signin.js";
 import Dashboard from "./Component/Dashboard.js";
 import Welcome from "./Component/Welcom.js";  // Make sure the file name is correct
 import Inventory from "./Component/Inventory.input.js"; // Assuming the file is named Inventory.js
+
 import { DataProvider } from './Context/user.context.js'; 
 function App() {
   return (
-    // <Router>
+  
     <DataProvider>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />}  />
         <Route path="/inventory" element={<Inventory />} />
       </Routes>
     
     </DataProvider>
+    // <Inventory/>
   );
 }
 

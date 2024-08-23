@@ -1,14 +1,16 @@
 import React from 'react';
 import Table from './Table';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 function Dashboard() {
+   
     return (
         <>
             <nav className="navbar navbar-dark bg-dark fixed-top">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">
                         <img
-                            src="inventory/image.png" // Correct path for the image
+                            src="" // Correct path for the image
                             alt="Logo"
                             style={{ width: '150px', height: 'auto' }}
                         />
@@ -57,16 +59,7 @@ function Dashboard() {
                         </div>
                         <div className="offcanvas-body">
                             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">
-                                        Tushar
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        Link
-                                    </a>
-                                </li>
+                               
                                 <li className="nav-item dropdown">
                                     <a
                                         className="nav-link dropdown-toggle"
@@ -75,25 +68,28 @@ function Dashboard() {
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false"
                                     >
-                                        Dropdown
+                                        Inventory
                                     </a>
                                     <ul className="dropdown-menu dropdown-menu-dark">
                                         <li>
+                                          <Link to="/inventory" >  <a className="dropdown-item" href="#" >
+                                                Create Inventory
+                                            </a></Link>
+                                        </li>
+                                        <li>
                                             <a className="dropdown-item" href="#">
-                                                Action
+                                                Check Stock Level
+                                            </a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a className="dropdown-item" href="#">
+                                                Reports
                                             </a>
                                         </li>
                                         <li>
                                             <a className="dropdown-item" href="#">
-                                                Another action
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <hr className="dropdown-divider" />
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item" href="#">
-                                                Something else here
+                                                Transaction History
                                             </a>
                                         </li>
                                     </ul>

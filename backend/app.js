@@ -6,6 +6,7 @@ import ItemRouter from './Router/item.router.js';
 import sequelize from './db/dbConfig.js';
 import cors from 'cors';
 import CategoryRouter from "./Router/categories.router.js"
+import "./Model/association.js"
 // Load environment variables from .env file
 dotenv.config();
 
@@ -23,6 +24,11 @@ app.use('/User', UserRouter);
 app.use('/item', ItemRouter);
 app.use('/category',CategoryRouter)
 // Sync models with the database
+
+
+
+//magic of association
+
 sequelize.sync()
   .then(() => {
     console.log('Database synchronized.');

@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 
 const User = sequelize.define('user', {
@@ -36,6 +37,8 @@ const User = sequelize.define('user', {
 User.checkPassword = async function (password, hashedPassword) {
   return bcrypt.compare(password, hashedPassword);
 };
+
+
 
 User.prototype.generateToken = function () {
   return jwt.sign(

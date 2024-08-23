@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 const Inventory = () => {
     const [name, setItemName] = useState('');
     const [description, setDescription] = useState('');
-    const [quantity, setQuantity] = useState(''); // Start as empty string
-    const [price, setPrice] = useState(''); // Start as empty string
+    const [quantity, setQuantity] = useState('');
+    const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
+    const [userId, setUserId] = useState(null); // Initialize userId state
+
+    // Retrieve userId from localStorage when component mounts
+    useEffect(() => {
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(parseInt(storedUserId, 10)); // Convert to number if needed
+        }
+    }, []);
 
     const sendData = async (e) => {
         e.preventDefault();
@@ -16,8 +25,8 @@ const Inventory = () => {
         const formattedPrice = parseFloat(price);
 
         // Validate data types
-        if (isNaN(formattedQuantity) || isNaN(formattedPrice)) {
-            console.error('Quantity or Price is invalid.');
+        if (isNaN(formattedQuantity) || isNaN(formattedPrice) || userId === null) {
+            console.error('Quantity, Price or userId is invalid.');
             return;
         }
 
@@ -27,16 +36,18 @@ const Inventory = () => {
                 description,
                 quantity: formattedQuantity,
                 price: formattedPrice,
-                category
+                category,
+                userId // Send userId with the request
             });
             console.log("Success", response.data);
         } catch (error) {
             console.error('Error:', error.response ? error.response.data : error.message);
         }
-    }
-    const handleCancleButton=()=>{
+    };
+
+    const handleCancleButton = () => {
         window.location.reload();
-    }
+    };
 
     return (
         <>
@@ -105,6 +116,7 @@ const Inventory = () => {
                                     step="1" // Ensures whole numbers
                                 />
                             </div>
+                            
                             <div className="d-flex justify-content-between">
                                 <button type="button" className="btn btn-outline-primary" onClick={sendData}>Submit</button>
                                 <button type="button" className="btn btn-outline-danger" onClick={handleCancleButton}>Cancel</button>
@@ -114,7 +126,7 @@ const Inventory = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Inventory;
